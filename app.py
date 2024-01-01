@@ -1,7 +1,10 @@
 from flask import Flask, render_template
-import pandas as pd
-from sklearn.cluster import KMeans
+import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
 from io import BytesIO
 import base64
 
@@ -9,44 +12,47 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Membaca data dari file CSV
-    data = pd.read_csv('data_kecamatan.csv')
+    # Membuat dataset contoh
+    data, _ = make_blobs(n_samples=300, centers=4, random_state=42)
 
-    # Menampilkan jumlah baris data
-    jumlah_baris = data.shape[0]
+    # Preprocessing: Standarisasi data
+    scaler = StandardScaler()
+    data_scaled = scaler.fit_transform(data)
 
-    # Memilih fitur untuk clustering
-    X = data[['Jumlah_LakiLaki', 'Jumlah_Perempuan', 'Jumlah_LakiPerempuan']]
+    # Menentukan jumlah klaster yang diinginkan
+    jumlah_klaster = 4
 
-    # Menentukan jumlah klaster yang sesuai dengan jumlah sampel
-    jumlah_klaster = min(3, jumlah_baris)
-
-    # Melakukan KMeans clustering
+    # Membuat model K-Means dengan jumlah klaster yang ditentukan
     kmeans = KMeans(n_clusters=jumlah_klaster, random_state=42)
-    kmeans.fit(X)
 
-    # Menambahkan kolom Klaster ke DataFrame
-    data['Klaster'] = kmeans.labels_
+    # Melatih model pada data
+    kmeans.fit(data_scaled)
+
+    # Memprediksi klaster untuk setiap data point
+    prediksi_klaster = kmeans.predict(data_scaled)
+
+    # Menghitung nilai siluet
+    siluet_score = silhouette_score(data_scaled, prediksi_klaster)
+
+    # Menampilkan hasil klaster, pusat klaster, dan nilai siluet
+    result_text = f"Hasil Klaster:\n{prediksi_klaster}\n\nPusat Klaster:\n{kmeans.cluster_centers_}\n\nNilai Siluet: {siluet_score}"
 
     # Visualisasi hasil klaster
-    fig = plt.figure(figsize=(10, 8))
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(X['Jumlah_LakiLaki'], X['Jumlah_Perempuan'], X['Jumlah_LakiPerempuan'], c=data['Klaster'], cmap='viridis', s=50)
-    ax.set_xlabel('Jumlah Laki-Laki')
-    ax.set_ylabel('Jumlah Perempuan')
-    ax.set_zlabel('Jumlah Laki-Perempuan')
+    plt.scatter(data_scaled[:, 0], data_scaled[:, 1], c=prediksi_klaster, cmap='viridis')
+    plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red', marker='X')
     plt.title('Hasil K-Means Clustering')
+    plt.xlabel('Fitur 1 (Standarisasi)')
+    plt.ylabel('Fitur 2 (Standarisasi)')
 
-    # Simpan plot ke objek BytesIO
-    image_stream = BytesIO()
-    plt.savefig(image_stream, format='png')
-    image_stream.seek(0)
+    # Simpan plot ke dalam BytesIO
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    
+    # Konversi plot ke dalam format base64 untuk disertakan di HTML
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
 
-    # Konversi objek BytesIO ke base64
-    plot_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
-
-    # Render template dengan jumlah baris data dan plot
-    return render_template('index.html', jumlah_baris=jumlah_baris, plot_base64=plot_base64)
+    return render_template('index.html', result=result_text, plot_url=plot_url)
 
 if __name__ == '__main__':
     app.run(debug=True)
