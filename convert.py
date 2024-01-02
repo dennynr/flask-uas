@@ -1,20 +1,14 @@
-import pandas as pd
-from sklearn.cluster import KMeans
+import json
 import pickle
 
-# Membaca data dari file CSV
-data = pd.read_csv('data_kecamatan.csv')
+# Membaca data dari file JSON
+json_file_path = 'puskesmas.json'
+with open(json_file_path, 'r') as json_file:
+    json_data = json.load(json_file)
 
-# Memilih fitur untuk clustering
-X = data[['Jumlah_LakiLaki', 'Jumlah_Perempuan', 'Jumlah_LakiPerempuan']]
+# Menyimpan data JSON ke file menggunakan Pickle
+pickle_file_path = 'data.pkl'
+with open(pickle_file_path, 'wb') as pickle_file:
+    pickle.dump(json_data, pickle_file)
 
-# Menentukan jumlah klaster yang sesuai dengan jumlah sampel
-jumlah_klaster = min(3, data.shape[0])
-
-# Melakukan KMeans clustering
-kmeans = KMeans(n_clusters=jumlah_klaster, random_state=42)
-kmeans.fit(X)
-
-# Simpan model ke dalam file dengan pickle
-with open('kmeans_model.pkl', 'wb') as model_file:
-    pickle.dump(kmeans, model_file)
+print(f"Data JSON dari {json_file_path} telah disimpan dalam bentuk Pickle di {pickle_file_path}")

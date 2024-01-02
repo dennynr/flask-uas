@@ -1,0 +1,167 @@
+{
+    "data": [
+      {
+        "Puskesmas": "TARIK",
+        "Tuberkulosis": 59,
+        "Hipertensi": 7.862,
+        "Glukosa": 2.275
+      },
+      {
+        "Puskesmas": "PRAMBON",
+        "Tuberkulosis": 99,
+        "Hipertensi": 24.338,
+        "Glukosa": 3.195
+      },
+      {
+        "Puskesmas": "KREMBUNG",
+        "Tuberkulosis": 88,
+        "Hipertensi": 17.256,
+        "Glukosa": 2.567
+      },
+      {
+        "Puskesmas": "PORONG",
+        "Tuberkulosis": 65,
+        "Hipertensi": 7.381,
+        "Glukosa": 785
+      },
+      {
+        "Puskesmas": "KEDUNGSOLO",
+        "Tuberkulosis": 47,
+        "Hipertensi": 4.728,
+        "Glukosa": 1.536
+      },
+      {
+        "Puskesmas": "JABON",
+        "Tuberkulosis": 70,
+        "Hipertensi": 12.522,
+        "Glukosa": 1.983
+      },
+      {
+        "Puskesmas": "TANGGULANGIN",
+        "Tuberkulosis": 109,
+        "Hipertensi": 19.591,
+        "Glukosa": 2.832
+      },
+      {
+        "Puskesmas": "CANDI",
+        "Tuberkulosis": 120,
+        "Hipertensi": 25.291,
+        "Glukosa": 3.835
+      },
+      {
+        "Puskesmas": "SIDODADI",
+        "Tuberkulosis": 34,
+        "Hipertensi": 5.485,
+        "Glukosa": 1.81
+      },
+      {
+        "Puskesmas": "TULANGAN",
+        "Tuberkulosis": 56,
+        "Hipertensi": 15.414,
+        "Glukosa": 2.291
+      },
+      {
+        "Puskesmas": "KEPADANGAN",
+        "Tuberkulosis": 27,
+        "Hipertensi": 7.422,
+        "Glukosa": 1.343
+      },
+      {
+        "Puskesmas": "WONOAYU",
+        "Tuberkulosis": 80,
+        "Hipertensi": 18.276,
+        "Glukosa": 3.066
+      },
+      {
+        "Puskesmas": "SUKODONO",
+        "Tuberkulosis": 151,
+        "Hipertensi": 29.554,
+        "Glukosa": 4.334
+      },
+      {
+        "Puskesmas": "SIDOARJO",
+        "Tuberkulosis": 70,
+        "Hipertensi": 27.478,
+        "Glukosa": 3.69
+      },
+      {
+        "Puskesmas": "URANGAGUNG",
+        "Tuberkulosis": 57,
+        "Hipertensi": 14.103,
+        "Glukosa": 2.549
+      },
+      {
+        "Puskesmas": "SEKARDANGAN",
+        "Tuberkulosis": 49,
+        "Hipertensi": 11.445,
+        "Glukosa": 1.5
+      },
+      {
+        "Puskesmas": "BUDURAN",
+        "Tuberkulosis": 69,
+        "Hipertensi": 22.319,
+        "Glukosa": 3.587
+      },
+      {
+        "Puskesmas": "SEDATI",
+        "Tuberkulosis": 123,
+        "Hipertensi": 28.99,
+        "Glukosa": 3.793
+      },
+      {
+        "Puskesmas": "WARU",
+        "Tuberkulosis": 135,
+        "Hipertensi": 40.785,
+        "Glukosa": 5.868
+      },
+      {
+        "Puskesmas": "MEDAENG",
+        "Tuberkulosis": 83,
+        "Hipertensi": 12.36,
+        "Glukosa": 2.669
+      },
+      {
+        "Puskesmas": "GEDANGAN",
+        "Tuberkulosis": 70,
+        "Hipertensi": 21.146,
+        "Glukosa": 2.853
+      },
+      {
+        "Puskesmas": "GANTING",
+        "Tuberkulosis": 47,
+        "Hipertensi": 16.929,
+        "Glukosa": 2.321
+      },
+      {
+        "Puskesmas": "TAMAN",
+        "Tuberkulosis": 148,
+        "Hipertensi": 37.666,
+        "Glukosa": 5.467
+      },
+      {
+        "Puskesmas": "TROSOBO",
+        "Tuberkulosis": 46,
+        "Hipertensi": 19.661,
+        "Glukosa": 3.312
+      },
+      {
+        "Puskesmas": "KRIAN",
+        "Tuberkulosis": 116,
+        "Hipertensi": 23.113,
+        "Glukosa": 3.179
+      },
+      {
+        "Puskesmas": "BARENGKRAJAN",
+        "Tuberkulosis": 53,
+        "Hipertensi": 12.596,
+        "Glukosa": 1.649
+      },
+      {
+        "Puskesmas": "BALONGBENDO",
+        "Tuberkulosis": 76,
+        "Hipertensi": 21.162,
+        "Glukosa": 2.847
+      }
+    ]
+  }
+  

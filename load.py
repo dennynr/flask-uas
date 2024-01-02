@@ -1,21 +1,29 @@
-import pandas as pd
+import json
 import pickle
 
-# Membaca data dari file CSV
-data = pd.read_csv('data_kecamatan.csv')
+# Contoh data untuk disimpan
+data = {
+    'nama': 'John Doe',
+    'umur': 25,
+    'pekerjaan': 'Pengembang'
+}
 
-# Memilih fitur untuk clustering
-X = data[['Jumlah_LakiLaki', 'Jumlah_Perempuan', 'Jumlah_LakiPerempuan']]
+# Menggunakan JSON untuk menyimpan data ke file
+json_file_path = 'data.json'
+with open(json_file_path, 'w') as json_file:
+    json.dump(data, json_file)
 
-# Membaca model dari file pickle
-with open('kmeans_model.pkl', 'rb') as model_file:
-    loaded_model = pickle.load(model_file)
+# Menggunakan Pickle untuk menyimpan data ke file
+pickle_file_path = 'data.pkl'
+with open(pickle_file_path, 'wb') as pickle_file:
+    pickle.dump(data, pickle_file)
 
-# Mendapatkan prediksi klaster
-predicted_clusters = loaded_model.predict(X)
+# Membaca data dari file JSON
+with open(json_file_path, 'r') as json_file:
+    json_data = json.load(json_file)
+    print("Data dari file JSON:", json_data)
 
-# Menambahkan kolom Klaster ke DataFrame
-data['Klaster'] = predicted_clusters
-
-# Menampilkan hasil klaster
-print(data)
+# Membaca data dari file Pickle
+with open(pickle_file_path, 'rb') as pickle_file:
+    pickle_data = pickle.load(pickle_file)
+    print("Data dari file Pickle:", pickle_data)
