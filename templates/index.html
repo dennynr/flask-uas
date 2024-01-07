@@ -1,5 +1,3 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,38 +8,57 @@
     <title>K-Means Clustering</title>
 </head>
 
-<body>
-    <!-- Display the iteration results table -->
-    {{ iteration_table_html|safe }}
-
-    <!-- Form to update centroids manually -->
-    <form method="post" action="{{ url_for('update_centroids') }}">
-        <label for="centroid1_x">Centroid 1 - x:</label>
-        <input type="text" name="centroid1_x" placeholder="Enter x" required>
-        <label for="centroid1_y">Centroid 1 - y:</label>
-        <input type="text" name="centroid1_y" placeholder="Enter y" required>
-        <label for="centroid1_z">Centroid 1 - z:</label>
-        <input type="text" name="centroid1_z" placeholder="Enter z" required><br>
-
-        <label for="centroid2_x">Centroid 2 - x:</label>
-        <input type="text" name="centroid2_x" placeholder="Enter x" required>
-        <label for="centroid2_y">Centroid 2 - y:</label>
-        <input type="text" name="centroid2_y" placeholder="Enter y" required>
-        <label for="centroid2_z">Centroid 2 - z:</label>
-        <input type="text" name="centroid2_z" placeholder="Enter z" required><br>
-
-        <label for="centroid3_x">Centroid 3 - x:</label>
-        <input type="text" name="centroid3_x" placeholder="Enter x" required>
-        <label for="centroid3_y">Centroid 3 - y:</label>
-        <input type="text" name="centroid3_y" placeholder="Enter y" required>
-        <label for="centroid3_z">Centroid 3 - z:</label>
-        <input type="text" name="centroid3_z" placeholder="Enter z" required><br>
-
-        <input type="submit" value="Update Centroids">
+<body class="bg-red-300 min-h-screen flex flex-col items-center justify-center">
+    <form method="post" action="{{ url_for('update_centroids') }}" class="bg-white p-8 rounded shadow-md">
+        <h1 class="text-2xl font-semibold mb-6">Update Centroids</h1>
+        <div class="grid grid-cols-3 gap-4">
+            {% for i in range(1, 4) %}
+            <div>
+                <label for="centroid{{ i }}_x">Centroid {{ i }} - x:</label>
+                <input type="text" name="centroid{{ i }}_x" placeholder="Enter x" required
+                    class="border p-2 rounded w-full">
+                <label for="centroid{{ i }}_y">Centroid {{ i }} - y:</label>
+                <input type="text" name="centroid{{ i }}_y" placeholder="Enter y" required
+                    class="border p-2 rounded w-full">
+                <label for="centroid{{ i }}_z">Centroid {{ i }} - z:</label>
+                <input type="text" name="centroid{{ i }}_z" placeholder="Enter z" required
+                    class="border p-2 rounded w-full">
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Update Centroids</button>
     </form>
+    <!-- Display the iteration results table -->
+    <div class="max-w-full overflow-x-auto bg-white mb-8 p-8 rounded shadow-md mt-8">
+        <h1 class="text-2xl font-semibold mb-6">Iteration Results</h1>
+        <table class="table-auto border-collapse border border-gray-500 w-full">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border border-gray-500 px-4 py-2">Iteration</th>
+                    <th class="border border-gray-500 px-4 py-2">Clusters</th>
+                    <th class="border border-gray-500 px-4 py-2">Centroids</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through your data to generate table rows -->
+                {% for i in range(iteration_results.shape[0]) %}
+                <tr>
+                    <td class="border border-gray-500 px-4 py-2">{{ iteration_results['Iteration'][i] }}</td>
+                    <td class="border border-gray-500 px-4 py-2">{{ iteration_results['Clusters'][i] }}</td>
+                    <td class="border border-gray-500 px-4 py-2">{{ iteration_results['Centroids'][i] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
 
     <!-- Display the plot -->
-    <img src="data:image/png;base64, {{ plot_url }}" alt="K-Means Clustering Plot">
+    <div class="mt-8">
+        <img src="data:image/png;base64, {{ plot_url }}" alt="K-Means Clustering Plot" class="w-full h-auto rounded shadow-md">
+    </div>    
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
+
 </html>

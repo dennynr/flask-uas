@@ -114,7 +114,8 @@ def index():
         silhouette_avg = silhouette_score(data_array, labels)
         print(f"Silhouette Score: {silhouette_avg}")
 
-    # Plotting the clusters and centroids in 3D
+# Plotting the clusters and centroids in 3D
+    plt.figure()
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
@@ -128,6 +129,7 @@ def index():
     ax.set_xlabel('Tuberkulosis')
     ax.set_ylabel('Hipertensi')
     ax.set_zlabel('Glukosa')
+
 
     # Convert lists to a DataFrame
     iteration_results = pd.DataFrame({
@@ -148,7 +150,7 @@ def index():
     plot_url = base64.b64encode(img.getvalue()).decode('utf8')
 
     # Pass both the table and plot_url to the template
-    return render_template('index.html', iteration_table_html=iteration_table_html, plot_url=plot_url)
+    return render_template('index.html', iteration_table_html=iteration_table_html, plot_url=plot_url, iteration_results=iteration_results)
 
 
 @app.route('/update_centroids', methods=['POST'])
@@ -290,9 +292,8 @@ def update_centroids():
     plot_url = base64.b64encode(img.getvalue()).decode('utf8')
 
     # Pass both the table and plot_url to the template
-    return render_template('index.html', iteration_table_html=iteration_table_html, plot_url=plot_url)
+    return render_template('index.html', iteration_table_html=iteration_table_html, plot_url=plot_url, iteration_results=iteration_results)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-    plt.show()
