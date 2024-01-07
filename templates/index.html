@@ -1,15 +1,47 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-Means Clustering</title>
 </head>
+
 <body>
-    <h1>Hasil K-Means Clustering</h1>
-    <p>{{ result }}</p>
-    <p>Prediksi Cluster : {{prediksi_klaster}}</p>
-    <img src="data:image/png;base64,{{ plot_url }}" alt="K-Means Plot">
+    <!-- Display the iteration results table -->
+    {{ iteration_table_html|safe }}
+
+    <!-- Form to update centroids manually -->
+    <form method="post" action="{{ url_for('update_centroids') }}">
+        <label for="centroid1_x">Centroid 1 - x:</label>
+        <input type="text" name="centroid1_x" placeholder="Enter x" required>
+        <label for="centroid1_y">Centroid 1 - y:</label>
+        <input type="text" name="centroid1_y" placeholder="Enter y" required>
+        <label for="centroid1_z">Centroid 1 - z:</label>
+        <input type="text" name="centroid1_z" placeholder="Enter z" required><br>
+
+        <label for="centroid2_x">Centroid 2 - x:</label>
+        <input type="text" name="centroid2_x" placeholder="Enter x" required>
+        <label for="centroid2_y">Centroid 2 - y:</label>
+        <input type="text" name="centroid2_y" placeholder="Enter y" required>
+        <label for="centroid2_z">Centroid 2 - z:</label>
+        <input type="text" name="centroid2_z" placeholder="Enter z" required><br>
+
+        <label for="centroid3_x">Centroid 3 - x:</label>
+        <input type="text" name="centroid3_x" placeholder="Enter x" required>
+        <label for="centroid3_y">Centroid 3 - y:</label>
+        <input type="text" name="centroid3_y" placeholder="Enter y" required>
+        <label for="centroid3_z">Centroid 3 - z:</label>
+        <input type="text" name="centroid3_z" placeholder="Enter z" required><br>
+
+        <input type="submit" value="Update Centroids">
+    </form>
+
+    <!-- Display the plot -->
+    <img src="data:image/png;base64, {{ plot_url }}" alt="K-Means Clustering Plot">
 </body>
+<script src="https://cdn.tailwindcss.com"></script>
 </html>
