@@ -17,20 +17,16 @@ max_iter = 200  # Declare max_iter as a global variable
 @app.route('/')
 def index():
     global data, k, max_iter
-
-    k = 3  # Define the value of k here
-
+    
     with open('data.pkl', 'rb') as file:
         loaded_data = pickle.load(file)
 
     data = {item['Puskesmas']: {'Tuberkulosis': item['Tuberkulosis'],
                                 'Hipertensi': item['Hipertensi'], 'Glukosa': item['Glukosa']} for item in loaded_data['data']}
-    # Rest of your code...
-    k = 3
 
-    # Maximum number of iterations
-    max_iter = 200  # or any other suitable value
+    # k = 3
 
+    # max_iter = 200 
     # Initial centroids
     centroids = {
         1: np.array([89, 23000, 2500]),
