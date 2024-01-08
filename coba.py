@@ -116,8 +116,9 @@ def index():
 
 # Plotting the clusters and centroids in 3D
     plt.figure()
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10, 8))  # Adjust the size as needed
     ax = fig.add_subplot(111, projection='3d')
+
 
     ax.scatter(data_array[:, 0], data_array[:, 1], data_array[:, 2], c=list(
         clusters.values()), cmap='viridis')
@@ -259,8 +260,9 @@ def update_centroids():
         print(f"Silhouette Score: {silhouette_avg}")
 
     # Plotting the clusters and centroids in 3D
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10, 8))  # Adjust the size as needed
     ax = fig.add_subplot(111, projection='3d')
+
 
     ax.scatter(data_array[:, 0], data_array[:, 1], data_array[:, 2], c=list(
         clusters.values()), cmap='viridis')
